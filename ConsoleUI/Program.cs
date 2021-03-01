@@ -1,9 +1,6 @@
 ﻿using Business.Concrete;
-using Business.Constants;
-using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
-using Entities.Concrete;
 using System;
 
 namespace ConsoleUI
@@ -12,18 +9,9 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            UserManager userManager = new UserManager(new EfUserDal());
-            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-
             CarTest();
-            //BrandTest();
-          
-
+           // BrandTest();
         }
-
-        
 
         private static void BrandTest()
         {
