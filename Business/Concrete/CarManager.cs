@@ -1,9 +1,12 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,32 +24,19 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour==5)
+            if (DateTime.Now.Hour == 5)
             {
                 return new ErrorDataResult<List<Car>>(Messages.ListError);
             }
-            return new SuccessDataResult<List<Car>> (_carDal.GetAll(),Messages.CarListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
 
         public IResult Add(Car car)
         {
-            if (car.Description.Length >= 2)
-            {
-                if (car.DailyPrice > 0)
-                {
-                    _carDal.Add(car);
-                    return new SuccessResult(Messages.CarAdded);
-                }
-                else
-                {
-                    return new ErrorResult(Messages.DailyPriceİnvalid);
-                }
-            }
-            else
-            {
-                return new ErrorResult(Messages.Descriptionİnvalid);
-            }
-            
+           
+            ValidationTool.Validate(new CarValidator(), car);
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
         }
 
         public IResult Delete(Car car)
@@ -63,7 +53,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAllById(int id)
         {
-            return new SuccessDataResult<List<Car>> (_carDal.GetAll(c => c.Id == id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.Id == id));
         }
 
         public IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max)
@@ -88,7 +78,7 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetById(int id)
         {
-            return new SuccessDataResult<Car> (_carDal.Get(c => c.Id == id));
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id));
         }
     }
 }
