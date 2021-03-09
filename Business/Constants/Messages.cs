@@ -28,5 +28,8 @@ namespace Business.Constants
         internal static string Updated="Güncellendi";
         internal static string RentInvalid="Kiralama Başarısız";
         internal static string ReturnDate="Araç Teslim Edilmemiş";
+
+        public static string CarImageAdded { get; internal set; }
+        public static string ImagesLimit { get; internal set; }
     }
 }
