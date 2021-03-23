@@ -30,7 +30,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  FirstName = u.FirstName,
                                  LastName = u.LastName,
                                  Email = u.Email,
-                                 Password = u.Password
+                                
 
                              };
                 return result.ToList();

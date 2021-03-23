@@ -1,6 +1,8 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -28,6 +30,13 @@ namespace Business.Constants
         internal static string Updated="Güncellendi";
         internal static string RentInvalid="Kiralama Başarısız";
         internal static string ReturnDate="Araç Teslim Edilmemiş";
+        internal static string AuthorizationDenied="Yetkiniz Yok";
+        internal static string UserRegistered="Kullanıcı Kaydı Başarılı";
+        internal static string UserNotFound="Kullanıcı Bulunamadı";
+        internal static string PasswordError="Parola Hatası";
+        internal static string SuccessfulLogin="Başarılı Giriş";
+        internal static string UserAlreadyExists="Kullanıcı Mevcut";
+        internal static string AccessTokenCreated="Token Oluşturuldu";
 
         public static string CarImageAdded { get; internal set; }
         public static string ImagesLimit { get; internal set; }
